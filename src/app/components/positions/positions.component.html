@@ -1,0 +1,74 @@
+<div class="positions-container">
+    <h2>Equity Positions</h2>
+  
+<!-- ADD BUTTON -->
+<div class="positions-header">
+  <button class="add-btn" (click)="toggleAddForm()">
+    {{ showAddForm ? 'Cancel' : '+ Add Position' }}
+  </button>
+</div>
+
+<!-- ADD FORM (hidden initially) -->
+<!-- ADD FORM -->
+<div *ngIf="showAddForm" class="add-form">
+  <form (ngSubmit)="addPosition()">
+    <div class="form-controls">
+      <select [(ngModel)]="newPosition.buySell" name="buySell">
+        <option value="BUY">BUY</option>
+        <option value="SELL">SELL</option>
+      </select>
+
+      <input
+        name="securityCode"
+        placeholder="Security Code"
+        [(ngModel)]="newPosition.securityCode"
+        required
+      />
+
+      <input
+        type="number"
+        name="quantity"
+        [(ngModel)]="newPosition.quantity"
+        min="1"
+        required
+      />
+
+      <select [(ngModel)]="newPosition.action" name="action">
+        <option value="INSERT">INSERT</option>
+        <option value="UPDATE">UPDATE</option>
+        <option value="CANCEL">CANCEL</option>
+      </select>
+    </div>
+
+    <div class="form-submit">
+      <button type="submit">Save</button>
+    </div>
+  </form>
+</div>
+
+    <mat-spinner *ngIf="loading" class="spinner"></mat-spinner>
+  
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  
+    <table mat-table [dataSource]="positions" class="mat-elevation-z8" *ngIf="!loading && !error">
+  
+      <!-- Security Code Column -->
+      <ng-container matColumnDef="securityCode">
+        <th mat-header-cell *matHeaderCellDef> Security </th>
+        <td mat-cell *matCellDef="let element"> {{ element.securityCode }} </td>
+      </ng-container>
+  
+      <!-- Quantity Column -->
+      <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let element">
+          <span [ngClass]="{ 'positive': element.quantity > 0, 'negative': element.quantity < 0 }">
+            {{ element.quantity > 0 ? '+' : '' }}{{ element.quantity }}
+          </span>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="['securityCode', 'quantity']"></tr>
+      <tr mat-row *matRowDef="let row; columns: ['securityCode', 'quantity']"></tr>
+    </table>
+  </div>

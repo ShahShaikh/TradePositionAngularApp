@@ -1,0 +1,97 @@
+.positions-container {
+    max-width: 400px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .spinner {
+    display: block;
+    margin: 20px auto;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .positive {
+    color: green;
+    font-weight: 600;
+  }
+  
+  .negative {
+    color: red;
+    font-weight: 600;
+  }
+  
+  table {
+    width: 100%;
+  }
+  .positions-header {
+  display: flex;
+  justify-content: flex-end; // align right
+  margin-bottom: 12px;
+}
+
+.add-btn {
+  background-color: #1976d2; // Material blue
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  font-weight: 500;
+
+  &:hover {
+    background-color: #125ea7;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+.add-form form {
+  display: flex;
+  flex-direction: column;   // stack rows vertically
+  gap: 8px;
+}
+
+.form-controls {
+  display: flex;
+  gap: 12px;               // space between fields
+  align-items: center;
+  flex-wrap: wrap;          // wraps on small screens
+}
+
+.form-controls select,
+.form-controls input {
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* Set specific widths */
+select[name="buySell"],
+select[name="action"] {
+  width: 100px;
+}
+
+input[name="securityCode"],
+input[name="quantity"] {
+  width: 50px;
+}
+
+.add-form input[name="securityCode"],
+.add-form input[name="quantity"] {
+  width: 50px;              // desired total width
+  padding: 4px;             // optional, reduce padding
+  box-sizing: border-box;   // ✅ include padding & border in width
+}
+}
